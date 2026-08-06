@@ -1,0 +1,319 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+html{
+  background-color:black;
+}
+
+
+
+html, body, #root {
+  max-width: 100%;
+  overflow-x: hidden; /* dodatkowy safety net na mobilki */
+
+}
+
+/*-------------------- ROOT VARIABLES --------------------*/
+:root {
+  --main-color: hsl(240, 37%, 7%);
+  --main-color2: hsl(240, 37%, 98%);
+  --secondary-color-text: hsl(240, 37%, 90%);
+  --secondary-color2: hsl(240, 37%, 17%);
+  --secondary-color3: hsl(240, 37%, 27%);
+  --secondary-color4: hsl(240, 37%, 47%);
+}
+
+
+/*-------------------- BODY --------------------*/
+body {
+  @apply flex flex-col items-center w-full min-h-screen m-0  ;
+  color: var(--secondary-color-text);
+  position:relative;
+  overflow-x:hidden;
+  font-family: 'Unna', serif;
+  background-size: 400% 400%;
+}
+
+/*-------------------- BACKGROUND VIDEO --------------------*/
+#background-video {
+  @apply fixed top-0 left-0 w-screen h-full object-cover z-0 bg-black;
+}
+
+/*-------------------- GLASS COMPONENT --------------------*/
+@layer components {
+  .glass {
+    @apply p-3 bg-white/10 backdrop-blur-md shadow-lg rounded-2xl ring-1 ring-white/50 bg-gradient-to-b from-black/20 to-white/20;
+  }
+
+  .move {
+    background: linear-gradient(-45deg,
+        red,
+        var(--secondary-color4),
+        var(--secondary-color2),
+        var(--main-color),
+        #00000035,
+        #00000000,
+        #00000000);
+    background-size: 200%;
+    animation: gradientMove 10s ease infinite;
+  }
+
+  .move2 {
+    background: linear-gradient(-45deg,
+        var(--secondary-color2),
+        var(--main-color),
+        #0400004b,
+        #00000000,
+        #00000000);
+    background-size: 200%;
+    animation: gradientMove 10s ease infinite;
+  }
+
+
+  .shine-links {
+    @apply relative overflow-hidden transition-colors duration-700;
+    background-image: 
+      linear-gradient(rgba(255,255,255, 0.3),rgba(255,255,255,0.35));
+  }
+
+  .shine-links::before {
+    @apply content-[""] absolute left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] rounded-md transition-all duration-700;
+  }
+
+  .shine-links:hover::before {
+    @apply left-[100%] bg-white/50;
+  }
+}
+
+/*-------------------- GRADIENT ANIMATIONS --------------------*/
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*-------------------- SLIDE DOWN ANIMATION --------------------*/
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  @apply opacity-0 will-change-transform;
+  animation: slideDown 1.5s cubic-bezier(.2, .9, .4, 1) 0.2s forwards;
+}
+
+.slide-down-2 {
+  @apply opacity-0 will-change-transform;
+  animation: slideDown 1s cubic-bezier(.2, .9, .4, 1) 1s forwards;
+}
+
+/*-------------------- HEADER --------------------*/
+header {
+  @apply flex justify-end items-center w-[full] h-[2.9rem]
+    rounded-tl-none rounded-tr-none rounded-bl-md rounded-br-md;
+}
+
+
+header a {
+  @apply flex items-center justify-center mx-4 min-w-[5rem] h-full rounded-full shadow-xs shadow-white/10 bg-white/5 backdrop-blur-sm ring-white/50 transition-transform duration-300 ease-linear hover:scale-105
+    max-[447px]:m-1 
+  ;
+
+}
+
+/*--------------------MAIN----------------------*/
+main {
+  @apply
+        mb-[100px]
+        xl:px-[15%] 
+         max-[523px]:px-3 
+         max-[523px]:relative 
+         max-[523px]:top-[78px] 
+         max-[523px]:w-full; 
+
+}
+.home {
+  @apply w-full flex flex-col md:flex-row justify-center min-h-[95vh] gap-5 p-3 text-shadow-white/50 shadow-white/90 mb-10 ;
+}
+.welcome-p
+{
+  @apply text-center max-[344px]:text-xs;
+}
+.ImMarcin{
+  @apply text-[2rem] inline  text-center max-[523px]:text-[1.2rem] max-[423px]:text-[1rem] max-[344px]:text-[0.9rem];
+}
+
+.home-left,
+.home-right {
+  @apply flex flex-col justify-start items-center gap-5;
+}
+
+.home-left {
+  @apply flex-2 p-10;
+}
+
+.home-right {
+  @apply flex-1;
+}
+
+
+.specialize {
+  @apply flex flex-col md:flex-row justify-evenly gap-5 text-3xl;
+}
+
+.specialize-frontend {
+  @apply shadow-lg bg-black/67 rounded-xl p-6 ;
+  background-image:
+    linear-gradient(black, black),
+    linear-gradient(90deg, red, blue, yellow);
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 300% 100%;
+  background-position: 0% 0%, 0% 0%;
+  animation: borderGradient 6s ease infinite
+}
+
+
+.specialize-frontend-title {
+  @apply text-xl font-semibold mb-2;
+}
+
+.home-right-image {
+  @apply  w-full p-5 h-[50vh] shadow-[0_0_5px_1px_rgba(255,255,255,0.9)] max-[914px]:h-[40%] ;
+}
+
+.home-right-contact{
+  @apply  w-[100%] p-4 shadow-[0_0_5px_1px_rgba(255,255,255,0.9)]
+}
+
+/*-------------------- LISTS --------------------*/
+ul {
+  @apply list-disc list-inside text-left space-y-2;
+}
+/*-------------------- Home-desc ----------------*/
+.home-desc{
+ @apply mb-10
+}
+
+#About{
+  @apply max-sm:p-0
+}
+
+.projects{
+  @apply flex-1 p-6;
+}
+
+.about-div-content{
+  @apply  shadow-[0_0_50px_20px_rgba(0,0,0,0.55)] bg-black/67 border-3 rounded-[8%] border-black/90 p-6 xl:max-w-[80%]  
+    max-xl:w-full;
+}
+
+
+
+
+
+/*-------------------- CONTACT --------------------*/
+.contact-link {
+  @apply flex items-center gap-2 cursor-pointer rounded-md;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-image:
+    linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0)),
+    linear-gradient(90deg, red, blu, yellow);
+  background-origin: padding-box;
+  background-clip: padding-box, border-box;
+  padding: 0.4rem 1rem;
+  /* kontroluj grubość 'borda' przez padding i border */
+
+  background-size: 100% 100%, 300% 100%;
+  background-position: 0% 0%, 0% 50%;
+  animation: borderGradient 4s ease infinite;
+  cursor: pointer;
+}
+
+/*-------------------- PROJECTS ------------------*/
+.amazon-button {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background-image:
+    linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0)),
+    linear-gradient(90deg, red, blue, yellow);
+  background-origin: padding-box;
+  background-clip: padding-box, border-box;
+  padding: 0.4rem 1rem;
+
+  background-size: 100% 100%, 300% 100%;
+  background-position: 0% 0%, 0% 50%;
+  animation: borderGradient 4s ease infinite;
+  cursor: pointer;
+}
+
+@keyframes borderGradient {
+  0% {
+    background-position: 0% 0%, 0% 50%;
+  }
+
+  50% {
+    background-position: 0% 0%, 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 0%, 0% 50%;
+  }
+}
+
+
+
+
+/*-------------------- INTRO OVERLAY --------------------*/
+.intro {
+  @apply fixed inset-0 z-50 flex items-center justify-center ;
+  background: linear-gradient(0deg, black, var(--main-color), red);
+  background-size: 400% 400%;
+  animation: movingColors 3s cubic-bezier(0.25,0.1,0.25,1) forwards;
+}
+
+@keyframes movingColors {
+  0% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+
+  50% {
+    background-position: 50% 100%;
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    background-position: 0% 50%;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
