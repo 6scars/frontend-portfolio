@@ -3,7 +3,7 @@ import amazonIcon from "../../images/amazon-simple.svg";
 
 export function Projects() {
     const goToAmazon = () => {
-        window.location.href = "/amazon-clone/public/amazon.html";
+        window.location.href = "https://frontend-amazon-sand.vercel.app/";
     };
 
         const goToMiniSpotify = () => {
