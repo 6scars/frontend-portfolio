@@ -6,8 +6,8 @@ export function Projects() {
         window.location.href = "https://frontend-amazon-sand.vercel.app/";
     };
 
-        const goToMiniSpotify = () => {
-        window.location.href = "/mini-spotify";
+    const goToMiniSpotify = () => {
+        window.location.href = "https://frontend-spotify-three.vercel.app/";
     };
 
     return (
